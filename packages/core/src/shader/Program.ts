@@ -97,8 +97,8 @@ export class Program
         this.fragmentSrc = this.fragmentSrc.trim();
 
         this.extra = extra;
-
-        if (this.vertexSrc.substring(0, 8) !== '#version')
+        
+        if (this.vertexSrc.substring(0, 8) !== '#version' )
         {
             name = name.replace(/\s+/g, '-');
 
@@ -125,6 +125,9 @@ export class Program
                 Program.defaultFragmentPrecision,
                 getMaxFragmentPrecision()
             );
+        }
+        else if(this.fragmentSrc.substring(0, 8) !== '#version'){
+            console.warn("Warning: if you wish to use #version directives, you must modify both the fragment and vertex shaders")
         }
 
         // currently this does not extract structs only default types
